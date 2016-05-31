@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+function bootstrap {
+  local shome="$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
+  source "$shome/script/profile"
+
+  case "$(uname -s)" in
+    Linux)
+      sudo apt-key add "$shome/etc/rethinkdb.gpg"
+      source /etc/lsb-release 
+      echo "deb http://download.rethinkdb.com/apt $DISTRIB_CODENAME main" | sudo tee /etc/apt/sources.list.d/rethinkdb.list
+      sudo aptitude update
+			sudo aptitude install -y rethinkdb
+      ;;
+    Darwin)
+      block compile dmg 'https://download.rethinkdb.com/osx/rethinkdb-2.3.2.dmg' \
+        'RethinkDB 2.3.2' 'rethinkdb-2.3.2.pkg'
+      ;;
+  esac
+}
+
+bootstrap
