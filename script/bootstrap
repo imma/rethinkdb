@@ -13,8 +13,8 @@ function bootstrap {
 			sudo aptitude install -y rethinkdb
       ;;
     Darwin)
-      block compile dmg 'https://download.rethinkdb.com/osx/rethinkdb-2.3.4.dmg' \
-        'RethinkDB 2.3.4' 'rethinkdb-2.3.4.pkg'
+      block compile dmg 'https://download.rethinkdb.com/osx/rethinkdb-2.3.5.dmg' \
+        'RethinkDB 2.3.5' 'rethinkdb-2.3.5.pkg'
       ;;
   esac
 }
